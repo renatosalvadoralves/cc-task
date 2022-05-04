@@ -1,11 +1,7 @@
-const {getCompanies} = require("./financial")
 const fs = require("fs")
 
-const formatBodyCsv = async (body) => {
+const formatBodyCsv = (body, companies) => {
   try {
-
-    const companies = await getCompanies()
-
     const data = body.map(user => {
       const holding = user.holdings.map(holding => {
         const companyName = companies.find(company => company.id === holding.id).name
@@ -34,13 +30,17 @@ const formatBodyCsv = async (body) => {
 }
 
 const writeCsv = (header, body, filePath = "data.csv") => {
-  const values = body.map(o => Object.values(o).join(",")).join("\n")
-  const csv = header + "\n" + values
+  try {
+    const values = body.map(o => Object.values(o).join(",")).join("\n")
+    const csv = header + "\n" + values
 
-  const writeStream = fs.createWriteStream(filePath)
-  writeStream.write(csv)
+    const writeStream = fs.createWriteStream(filePath)
+    writeStream.write(csv)
 
-  return csv
+    return csv
+  } catch (error) {
+    throw new Error(error)
+  }
 }
 
 module.exports = {
