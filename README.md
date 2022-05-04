@@ -75,3 +75,16 @@ Financial Companies - localhost:8082
 
 Admin - localhost:8083
 - `/investments/:id` get an investment record by id
+- `/reports/csv` generate csv document
+
+### Nice to have
+
+- Typescript 
+- Integration Tests
+- Prettier/eslint and tsconfig configurations
+- Tests integrated with husky to set a limit of percentage coverage on commits and push
+- SWRC or babel to minified code for build production
+- For api be flexible and scalable others patterns of architecture instead of MVC, for example: Clean architecture, SOLID or Hexagonal. Maybe POO can be better for scalable application depend of context. In this context i thought MVC would be enough.
+- Documentation on Postman
+- Security: Depending on the context, if we want create authentication together with authorization along the microservices, it might make sense to create an auth service where this service will be responsible for storing all this responsibility. If it's just an authentication system on the service it might make sense to build on the service itself. One of them possibilities that can be used is create JWT token with a secret code and id of user for example and using this token to authenticate.
+
